@@ -1,0 +1,2 @@
+#!/bin/bash
+git pull && docker build -t mopidy . && docker run -p 6680:6680 mopidy 
