@@ -22,6 +22,9 @@ RUN apt-get update \
     python-gst-1.0 \
     python3-gst-1.0 \
     gnupg2 \
+    libffi-dev \
+    libxslt1-dev \
+    libxml2 \
   && rm -rf /var/lib/apt/lists/*
 
 
@@ -30,7 +33,7 @@ RUN apt-get update \
 # RUN ln -s /usr/lib/python3/dist-packages/gi /usr/local/lib/python3.7/site-packages/gi
 
 # Install libspotify-dev from apt.mopidy.com
-RUN wget -q -O - https://apt.mopidy.com/mopidy.gpg \
+RUN wget -vO - https://apt.mopidy.com/mopidy.gpg \
   | APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE=DontWarn apt-key add - \
   && wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/buster.list \
   && apt-get update \
@@ -55,12 +58,7 @@ RUN python3.7 -m pip install --no-cache \
   tox \
   mopidy-mpd \
   mopidy-spotify \
-  mopidy-local \
-  Mopidy-GMusic \
-  Mopidy-TuneIn \
   Mopidy-Youtube \
-  Mopidy-SoundCloud \
-  Mopidy-Podcast \
   # pip not up-to-date for Mopidy-Tidal (https://github.com/tehkillerbee/mopidy-tidal/issues/14)
   git+https://github.com/tehkillerbee/mopidy-tidal.git@master
 
