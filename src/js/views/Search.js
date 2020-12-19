@@ -68,6 +68,7 @@ class Search extends React.Component {
   }
 
   onReset = () => {
+    console.log("onReset was selected");
     const { history } = this.props;
     history.push('/search');
   }
